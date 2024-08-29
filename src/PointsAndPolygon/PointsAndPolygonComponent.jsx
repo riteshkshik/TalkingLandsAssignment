@@ -2,11 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Polygon, useMapEvents, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { Icon } from 'leaflet';
 
 const pointsAndPolygonComponent = () => {
   const [points, setPoints] = useState([]);
   const [polygons, setPolygons] = useState([]);
   const [selectedFeature, setSelectedFeature] = useState(null);
+
+  const housingIcon = new Icon({
+    iconUrl: "https://img.icons8.com/plasticine/100/exterior.png",
+    iconSize: [38, 45], // size of the icon
+    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+  });
 
   useEffect(() => {
     // Fetch point and polygon data from API
@@ -58,6 +66,7 @@ const pointsAndPolygonComponent = () => {
           <Marker 
             key={point.id} 
             position={[point.lat, point.lng]}
+            icon={housingIcon}
             eventHandlers={{
               click: () => setSelectedFeature({ type: 'point', lat: point.lat, lng: point.lng }),
             }}
