@@ -12,7 +12,7 @@ const App = () => {
         <button onClick={() => setFlag(1)}>Points Map</button>
         <button onClick={() => setFlag(2)}>Us States Map</button>
       </div>
-      {flag == 1 ? <PointsAndPolygonComponent />: <UsStatesComponents />}
+      {flag == 1 ? <UsStatesComponents />: <PointsAndPolygonComponent /> }
     </div>
   );
 };
